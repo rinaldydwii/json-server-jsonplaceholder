@@ -1,10 +1,11 @@
 {
     "version": 2,
     "name": "json-server-jsonplaceholder",
+    "alias": "json-server-jsonplaceholder",
     "builds": [
         { "src": "server.js", "use": "@now/node" }
     ],
     "routes": [
-        { "src": "/(.*)", "dest": "server.js" }
+        { "src": "/", "dest": "/server.js" }
     ]
 }
