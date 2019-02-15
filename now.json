@@ -1,5 +1,5 @@
 {
-    "version": 1,
+    "version": 2,
     "name": "json-server-jsonplaceholder",
     "builds": [
         { "src": "server.js", "use": "@now/node" }
