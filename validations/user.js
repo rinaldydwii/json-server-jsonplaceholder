@@ -1,6 +1,8 @@
 const validate = require('../functions/validate')
 
+// function to validate request for user route
 function validateUser(body, method) {
+    // initialize user validator
     const validator = {
         "name": true,
         "username": true,

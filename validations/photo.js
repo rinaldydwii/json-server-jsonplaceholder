@@ -1,6 +1,8 @@
 const validate = require('../functions/validate')
 
+// function to validate request for photo route
 function validatePhoto(body, method) {
+    // initialize photo validator
     const validator = {
         "albumId": true,
         "title": true,

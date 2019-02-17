@@ -1,6 +1,8 @@
 const validate = require('../functions/validate')
 
+// function to validate request for comment route
 function validateComment(body, method) {
+    // initialize comment validator
     const validator = {
         "postId": true,
         "name": true,
