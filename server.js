@@ -47,7 +47,6 @@ server.use((req, res, next) => {
     else if (path[1] === "todos") error = validateTodo(body, method)
   } 
   // do validate for PATCH method request
-  // REQ BODY MODIFICATION WITH ERROR OR NEW BODY
   else if (method === "PATCH") {
     if (path[1] === "users") error = validateUser(body)
     else if (path[1] === "posts") error = validatePost(body)
