@@ -62,7 +62,7 @@ server.use((req, res, next) => {
     return res.status(422).jsonp({
       messages: error.messages.flat(Infinity)
     })
-  } else if (!error.isEmpty() && error.body) {
+  } else if (!error.isEmpty() && error.body && method === "PATCH") {
     req.body = error.body
   }
   // next if there is no error
