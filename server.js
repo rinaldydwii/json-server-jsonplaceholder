@@ -24,7 +24,10 @@ server.use(jsonServer.bodyParser)
 server.use((req, res, next) => {
   const { method, body } = req
   // Initialize error is false
-  let error = {isEmpty: () => false}
+  let error = {
+    isEmpty: () => false,
+    body: {}
+  }
   // Split path url
   const path = req.path.split("/")
   /*
@@ -44,13 +47,14 @@ server.use((req, res, next) => {
     else if (path[1] === "todos") error = validateTodo(body, method)
   } 
   // do validate for PATCH method request
+  // REQ BODY MODIFICATION WITH ERROR OR NEW BODY
   else if (method === "PATCH") {
-    if (path[1] === "users") req.body = validateUser(body)
-    else if (path[1] === "posts") req.body = validatePost(body)
-    else if (path[1] === "comments") req.body = validateComment(body)
-    else if (path[1] === "albums") req.body = validateAlbum(body)
-    else if (path[1] === "photos") req.body = validatePhoto(body)
-    else if (path[1] === "todos") req.body = validateTodo(body)
+    if (path[1] === "users") error = validateUser(body)
+    else if (path[1] === "posts") error = validatePost(body)
+    else if (path[1] === "comments") error = validateComment(body)
+    else if (path[1] === "albums") error = validateAlbum(body)
+    else if (path[1] === "photos") error = validatePhoto(body)
+    else if (path[1] === "todos") error = validateTodo(body)
   }
   // check there is error or not
   // if there is a error it will be return 422 error code and message
@@ -58,6 +62,8 @@ server.use((req, res, next) => {
     return res.status(422).jsonp({
       messages: error.messages.flat(Infinity)
     })
+  } else if (!error.isEmpty() && error.body) {
+    req.body = error.body
   }
   // next if there is no error
   next()
