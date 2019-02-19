@@ -70,5 +70,5 @@ server.use((req, res, next) => {
 server.use(router)
 // starting server
 server.listen(port, () => {
-  console.log('JSON Server is running '+port)
+  console.log('JSON Server is running in port: '+port)
 })
